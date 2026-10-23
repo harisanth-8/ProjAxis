@@ -65,11 +65,12 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/settings', settingsRoutes);
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
+// Health check endpoints (for UptimeRobot / Render keep-alive)
+app.get(['/', '/health', '/api/health'], (req, res) => {
   res.status(200).json({
     status: 'ok',
-    product: 'ProjAxis',
+    product: 'ProjAxis API',
+    uptime: process.uptime(),
     timestamp: new Date().toISOString()
   });
 });
