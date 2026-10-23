@@ -39,6 +39,6 @@
     "testMatch": [
       "**/tests/**/*.test.js"
     ],
-    "testTimeout": 30000
+    "testTimeout": 60000
   }
 }

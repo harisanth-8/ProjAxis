@@ -51,6 +51,16 @@ app.use(cookieParser(env.COOKIE_SECRET));
 // Sanitize MongoDB operators ($ and .) to prevent NoSQL injection
 app.use(mongoSanitize());
 
+// Health check endpoints (Public: UptimeRobot, Render keep-alive, Browser health checks)
+app.get(['/', '/health', '/api', '/api/health'], (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    product: 'ProjAxis API',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString()
+  });
+});
+
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -64,16 +74,6 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/settings', settingsRoutes);
-
-// Health check endpoints (for UptimeRobot / Render keep-alive)
-app.get(['/', '/health', '/api/health'], (req, res) => {
-  res.status(200).json({
-    status: 'ok',
-    product: 'ProjAxis API',
-    uptime: process.uptime(),
-    timestamp: new Date().toISOString()
-  });
-});
 
 // Centralized error handling
 app.use(errorHandler);
