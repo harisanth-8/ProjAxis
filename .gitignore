@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build
+dist/
+build/
+*.timestamp-*.mjs
+*.timestamp-*.js
+
+# Environment files and credentials (CRITICAL: Never commit .env files)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# File uploads (keep folder structure via .gitkeep)
+uploads/*
+!uploads/.gitkeep
+
+# IDE and OS artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.gemini/
+
+# Test coverage
+coverage/
+.nyc_output/

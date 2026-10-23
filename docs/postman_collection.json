@@ -1,0 +1,102 @@
+{
+  "info": {
+    "name": "ProjAxis API Collection",
+    "description": "Complete collection of API requests for ProjAxis College Project Management Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@projaxis.edu\",\n  \"password\": \"Password@123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "Get Current User Profile (/me)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/auth/me", "host": ["{{baseUrl}}"], "path": ["auth", "me"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "List Projects",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/projects", "host": ["{{baseUrl}}"], "path": ["projects"] }
+          }
+        },
+        {
+          "name": "Get Project Detail",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/projects/PRJ-2026-0001", "host": ["{{baseUrl}}"], "path": ["projects", "PRJ-2026-0001"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Proposals",
+      "item": [
+        {
+          "name": "List Proposals",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/proposals", "host": ["{{baseUrl}}"], "path": ["proposals"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews & Evaluations",
+      "item": [
+        {
+          "name": "List Reviews",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/reviews", "host": ["{{baseUrl}}"], "path": ["reviews"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Project Status Report",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/reports/project-status", "host": ["{{baseUrl}}"], "path": ["reports", "project-status"] }
+          }
+        },
+        {
+          "name": "Export Report CSV",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/reports/project-status?format=csv", "host": ["{{baseUrl}}"], "path": ["reports", "project-status"], "query": [{ "key": "format", "value": "csv" }] }
+          }
+        }
+      ]
+    }
+  ]
+}

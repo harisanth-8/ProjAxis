@@ -1,0 +1,194 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import './tokens.css';
+
+/* Global Reset & Typography */
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--color-page-bg);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
+/* Link Styling */
+a {
+  color: var(--color-academic-blue);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-navy);
+}
+
+/* Cards & Surfaces */
+.card, .pa-surface {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+}
+
+/* Custom Institutional Buttons */
+.btn-primary, .pa-btn-primary {
+  background-color: var(--color-navy) !important;
+  border-color: var(--color-navy) !important;
+  color: #ffffff !important;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+.btn-primary:hover, .pa-btn-primary:hover {
+  background-color: #0f2541 !important;
+  border-color: #0f2541 !important;
+}
+
+.btn-secondary, .pa-btn-secondary {
+  background-color: var(--color-light-blue) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-academic-blue) !important;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+}
+.btn-secondary:hover, .pa-btn-secondary:hover {
+  background-color: #dbe7f7 !important;
+  color: var(--color-navy) !important;
+}
+
+.btn-outline-primary {
+  border-color: var(--color-academic-blue) !important;
+  color: var(--color-academic-blue) !important;
+  border-radius: var(--radius-md);
+}
+.btn-outline-primary:hover {
+  background-color: var(--color-academic-blue) !important;
+  color: #ffffff !important;
+}
+
+/* Form Controls */
+.form-control, .form-select {
+  border-color: var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--color-academic-blue);
+  box-shadow: 0 0 0 0.2rem rgba(47, 101, 167, 0.15);
+}
+
+/* Data Tables */
+.table {
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+  margin-bottom: 0;
+}
+.table thead th {
+  background-color: var(--color-page-bg);
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 1rem;
+}
+.table tbody td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9rem;
+}
+
+/* Badges */
+.badge {
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  padding: 0.35em 0.65em;
+  font-size: 0.78rem;
+}
+
+/* Sidebar & Navigation */
+.pa-sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  background-color: var(--color-navy);
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 1020;
+}
+
+.pa-sidebar-brand {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.pa-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1.5rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+.pa-nav-item:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.pa-nav-item.active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.14);
+  border-left-color: #ffffff;
+}
+
+/* Topbar */
+.pa-topbar {
+  height: var(--topbar-height);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 1010;
+  padding: 0 1.5rem;
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+  margin-bottom: 0;
+  font-size: 0.85rem;
+}
+.breadcrumb-item a {
+  color: var(--color-text-muted);
+}
+.breadcrumb-item.active {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+/* Responsive utilities */
+@media (max-width: 991.98px) {
+  .pa-sidebar {
+    position: fixed;
+    left: -100%;
+    transition: left 0.3s ease;
+  }
+  .pa-sidebar.open {
+    left: 0;
+  }
+}
