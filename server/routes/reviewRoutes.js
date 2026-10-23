@@ -26,7 +26,7 @@ import {
 
 const router = express.Router();
 
-router.use(authenticate);
+router.use(['/reviews', '/students', '/evaluations'], authenticate);
 
 // Reviews
 router.get('/reviews', getReviews);

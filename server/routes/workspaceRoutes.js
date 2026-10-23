@@ -36,7 +36,7 @@ import { getDocuments, uploadDocument } from '../controllers/documentController.
 
 const router = express.Router();
 
-router.use(authenticate);
+router.use(['/projects', '/tasks', '/workstreams', '/milestones', '/calendar'], authenticate);
 
 // Projects
 router.get('/projects', getProjects);

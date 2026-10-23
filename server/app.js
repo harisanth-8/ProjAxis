@@ -63,6 +63,7 @@ app.get(['/', '/health', '/api', '/api/health'], (req, res) => {
 
 // API Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/settings', settingsRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/departments', departmentRoutes);
 app.use('/api/proposals', proposalRoutes);
@@ -73,7 +74,6 @@ app.use('/api', reviewRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/reports', reportRoutes);
-app.use('/api/settings', settingsRoutes);
 
 // Centralized error handling
 app.use(errorHandler);

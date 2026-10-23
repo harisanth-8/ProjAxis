@@ -8,12 +8,28 @@ const api = axios.create({
   }
 });
 
+// Request interceptor to attach Bearer token (ensures auth works even when browsers block third-party cookies)
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('projaxis_token');
+    if (token) {
+      config.headers = config.headers || {};
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 // Response interceptor for unified data and error handling
 api.interceptors.response.use(
   (response) => {
     return response.data;
   },
   (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('projaxis_token');
+    }
     const errorPayload = error.response?.data?.error || {
       code: 'NETWORK_ERROR',
       message: error.message || 'An unexpected network error occurred'

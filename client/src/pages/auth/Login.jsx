@@ -28,8 +28,9 @@ const Login = () => {
 
     try {
       const data = await login(email, password);
-      const role = data.user.roles[0];
-      if (data.mustChangePassword) {
+      const loggedUser = data.user || data;
+      const role = loggedUser.roles?.[0] || 'student';
+      if (data.mustChangePassword || loggedUser.mustChangePassword) {
         navigate('/change-password');
       } else {
         navigate(`/${role}/dashboard`);

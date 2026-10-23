@@ -20,7 +20,7 @@ import {
 
 const router = express.Router();
 
-router.use(authenticate);
+router.use(['/projects', '/progress-reports', '/feedback'], authenticate);
 
 // Progress reports
 router.post('/projects/:projectId/progress-reports', validate(submitProgressReportSchema), submitProgressReport);

@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
           setActiveRole(roleToSet);
         }
       } catch (err) {
+        localStorage.removeItem('projaxis_token');
         setUser(null);
         setActiveRole(null);
       } finally {
@@ -33,24 +34,34 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const res = await api.post('/auth/login', { email, password });
-    const loggedUser = res.data?.user || res.data;
+    const payload = res.data || res;
+    const loggedUser = payload.user || payload;
+    const token = payload.token;
+    if (token) {
+      localStorage.setItem('projaxis_token', token);
+    }
     setUser(loggedUser);
     const initialRole = loggedUser.roles?.[0] || 'student';
     setActiveRole(initialRole);
     localStorage.setItem('projaxis_active_role', initialRole);
-    return res.data;
+    return payload;
   };
 
   const register = async (payload) => {
     const res = await api.post('/auth/register', payload);
-    const registeredUser = res.data?.user;
+    const data = res.data || res;
+    const registeredUser = data.user;
+    const token = data.token;
+    if (token) {
+      localStorage.setItem('projaxis_token', token);
+    }
     if (registeredUser && registeredUser.accountStatus === 'Active') {
       setUser(registeredUser);
       const initialRole = registeredUser.roles?.[0] || 'student';
       setActiveRole(initialRole);
       localStorage.setItem('projaxis_active_role', initialRole);
     }
-    return res.data;
+    return data;
   };
 
   const logout = async () => {
@@ -59,6 +70,7 @@ export const AuthProvider = ({ children }) => {
     } catch {
       // Continue client cleanup even if network fails
     }
+    localStorage.removeItem('projaxis_token');
     localStorage.removeItem('projaxis_active_role');
     setUser(null);
     setActiveRole(null);
